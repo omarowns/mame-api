@@ -37,7 +37,7 @@ class PizzarronController < ApplicationController
   def token_mismatch
     # While testing we can skip the token
     unless Rails.env == 'test' || request.domain == 'localhost'
-      @token != Figaro.env.slack_token
+      @token != ENV["slack_token"]
     end
   end
 end
