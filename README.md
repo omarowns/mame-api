@@ -1,24 +1,48 @@
-# README
+# Mame API
 
-This README would normally document whatever steps are necessary to get the
-application up and running.
+### Ruby Version:
 
-Things you may want to cover:
+> 2.2.2 or greater
 
-* Ruby version
+> 2.3.0 (recomended)
 
-* System dependencies
+### Rails Version:
 
-* Configuration
+> 5.0.0.beta4
 
-* Database creation
+## Installation
 
-* Database initialization
+1. Clone the project
 
-* How to run the test suite
+> `git clone git@github.com:omarowns/mame-api.git`
 
-* Services (job queues, cache servers, search engines, etc.)
+> `cd mame-api`
 
-* Deployment instructions
+2. Install dependencies
 
-* ...
+> `bundle install`
+
+## Environment Variables
+
+This project uses the `figaro` gem to handle `ENV` variables.
+There is a `application.yml.example` already set up, just copy, rename and setup with your tokens.
+
+> `cp config/application.yml.example config/application.yml`
+
+Change the slack token to your actual token.
+
+## Tests
+
+### Setting up
+
+> `bundle exec rake db:test:prepare`
+
+### Running tests
+
+> `bundle exec rake test`
+
+## Deployment
+
+Deploy how you see fit.
+
+I use one of those free Heroku workers and it works perfectly.
