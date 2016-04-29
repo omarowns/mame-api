@@ -1,5 +1,5 @@
 class PizzarronController < ApplicationController
-  before_action :parse_params
+  before_action :parse_params, :verify_token
 
   def mame
     parse_text
@@ -28,5 +28,16 @@ class PizzarronController < ApplicationController
       args: @text.match(/(\w+)\s?(.*)?/)[2]
     }
     @arguments = opts
+  end
+
+  def verify_token
+    render_incorrect_token if token_mismatch
+  end
+
+  def token_mismatch
+    # While testing we can skip the token
+    unless Rails.env == 'test' || request.domain == 'localhost'
+      @token != Figaro.env.slack_token
+    end
   end
 end
