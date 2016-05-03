@@ -16,15 +16,17 @@ module Mames
         format_get
       elsif @command == 'score'
         format_score
-      end.join("\n")
+      else
+        @service_response
+      end
     end
 
     def format_get
-      @service_response.map(&:quote)
+      @service_response.map(&:quote).join("\n")
     end
 
     def format_score
-      @service_response.map { |mame| "#{mame[0]}: #{mame[1]}"  }
+      @service_response.map { |mame| "#{mame[0]}: #{mame[1]}"  }.join("\n")
     end
   end
 end
