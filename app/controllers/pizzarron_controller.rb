@@ -4,7 +4,8 @@ class PizzarronController < ApplicationController
   def mame
     parse_text
     service_response = Mames::RunnerService.new(@arguments).call
-    render_success_json text: service_response
+    formatted_response = Mames::FormatterService.new(@arguments, service_response).call
+    render_success_json text: formatted_response
   end
 
   private
